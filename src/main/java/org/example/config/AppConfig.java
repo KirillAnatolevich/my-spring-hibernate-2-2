@@ -32,8 +32,6 @@ public class AppConfig {
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
 
-     //   dataSource.setConnectionProperties(env.getProperty("db.dialect"));
-
         return dataSource;
     }
 
@@ -43,10 +41,8 @@ public class AppConfig {
         factoryBean.setDataSource(getDataSource());
 
         Properties props = new Properties();
-        props.put("hibernate.dialect", env.getProperty("org.hibernate.dialect.MySQL5Dialect"));
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-
         factoryBean.setHibernateProperties(props);
         factoryBean.setAnnotatedClasses(User.class);
         return factoryBean;
