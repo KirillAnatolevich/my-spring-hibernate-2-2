@@ -1,15 +1,15 @@
-package org.example.dao;
+package org.example.service;
 
 import org.example.model.Car;
 import org.example.model.User;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
-public interface UserDao {
+public interface UserService {
     void add(User user);
     List<User> listUser();
     void clearUserTable();
     public List<User> getUserTheCar(Car car);
-    public List<User> getUserTheCar(int series, String model);
+
+    List<User> getUserTheCar(int i, String model);
 }

@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.model.Car;
 import org.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,8 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 // включить управление транзакциями
 @EnableTransactionManagement
-@ComponentScan(value = "hiber")
+// указываем где искать бины
+@ComponentScan(value = "org.example")
 public class AppConfig {
     @Autowired
     private Environment env;
@@ -44,7 +46,7 @@ public class AppConfig {
         props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
         props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         factoryBean.setHibernateProperties(props);
-        factoryBean.setAnnotatedClasses(User.class);
+        factoryBean.setAnnotatedClasses(User.class, Car.class);
         return factoryBean;
     }
 
