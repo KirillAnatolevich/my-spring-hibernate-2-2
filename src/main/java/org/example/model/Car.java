@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "car")
-public class Car {
+public class Car{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -13,7 +13,7 @@ public class Car {
     @Column(name = "model")
     private String model;
     // mappedBy - имя поля, которому принадлежит связь //,
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "car")
+    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL)
     //@JoinColumn(name = "id_user", referencedColumnName = "id")
     private User user;
     public Car() {

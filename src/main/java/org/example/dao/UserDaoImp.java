@@ -27,22 +27,12 @@ public class UserDaoImp implements UserDao{
     }
     @Override
     public void clearUserTable(){
-//        try {
             sessionFactory.getCurrentSession().createQuery("delete from User").executeUpdate();
-//        }catch (Exception e){
-//            System.out.println("Не удалось очистить таблицу");
-//        }
-    }
-    @Override
-    public List<User> getUserTheCar(Car car){
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(String.format("from User where car_id = %d", car.getId()));
-        return query.getResultList();
 
     }
     @Override
     public List<User> getUserTheCar(int series, String model){
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(String.format("select user from User as user, Car as car where user.car.series = %d and user.car.model = '%s'", series, model));
+        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery(String.format("select distinct user from User as user, Car as car where user.car.series = %d and user.car.model = '%s'", series, model));
         return query.getResultList();
-
     }
 }

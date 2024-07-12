@@ -10,6 +10,5 @@ public interface UserDao {
     void add(User user);
     List<User> listUser();
     void clearUserTable();
-    public List<User> getUserTheCar(Car car);
     public List<User> getUserTheCar(int series, String model);
 }

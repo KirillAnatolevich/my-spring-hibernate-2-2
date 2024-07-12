@@ -9,7 +9,5 @@ public interface UserService {
     void add(User user);
     List<User> listUser();
     void clearUserTable();
-    public List<User> getUserTheCar(Car car);
-
     List<User> getUserTheCar(int i, String model);
 }

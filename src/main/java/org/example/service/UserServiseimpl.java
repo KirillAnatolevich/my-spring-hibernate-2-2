@@ -36,11 +36,6 @@ public class UserServiseimpl implements UserService{
     }
     @Transactional
     @Override
-    public List<User> getUserTheCar(Car car){
-        return userDao.getUserTheCar(car);
-    }
-    @Transactional
-    @Override
     public List<User> getUserTheCar(int series, String model){
         return userDao.getUserTheCar(series, model);
     }

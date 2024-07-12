@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,8 +21,13 @@ public class User {
     private String email;
 
     // cascade = CascadeType.ALL - означает, что мы удаляем дочерний класс вместе с основным автоматически
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    // Имя столбца, referencedColumnName - поле которое будет связано со столбцом
+    // fetch - определяет как целевой объект извлекается из бд (FetchType.EAGER (загружается сразу с помощью объекта-владельца) FetchType.LAZY (загружается по запросу при доступе))
+    // mappeby - установка владельца связи (без нее связь однонаправленная)
+    // optional (не обязательно) - если optional = true то объект для связи должен быть всегда (по умолчанию false)
+    // orphanRemoval - следует ил применять операцию удаления к объектам, которые были удалены из отношения и каскадировать операцию удаления этих объектов
+    // targetEntity - класс сущности, который является целью операции
+
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id", referencedColumnName = "id")
     private Car car;
 
